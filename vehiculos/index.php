@@ -39,9 +39,7 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
+                        
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -52,8 +50,8 @@
                                             <td>Modelo</td>
                                             <td>Marca</td>
                                             <td>Capacidad</td>
-                                            <td>Nombres cliente</td>
-                                            <td>Nombres conductor</td>
+                                            <td>Cliente</td>
+                                            <td>Conductor</td>
                                             <th>Fecha de creción</th>
                                             <th>Fecha de modificación</th>
                                             <th></th>
@@ -66,8 +64,8 @@
                                             <td>Modelo</td>
                                             <td>Marca</td>
                                             <td>Capacidad</td>
-                                            <td>Nombres cliente</td>
-                                            <td>Nombres conductor</td>
+                                            <td>Cliente</td>
+                                            <td>Conductor</td>
                                             <th>Fecha de creción</th>
                                             <th>Fecha de modificación</th>
                                             <th></th>

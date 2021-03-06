@@ -106,7 +106,7 @@ if ($isEditMode) {
 
                                 <div class="col-md-12 mt-3">
                                     <input type="submit" class="btn btn-primary" name="btnGuardar" value="Guardar">
-
+                                    <a class="btn btn-primary" href="../pdf"> Listado en PDF </a>
                                     <?php
                                     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["btnGuardar"])) {
 

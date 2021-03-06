@@ -1,5 +1,6 @@
 <?php 
 include_once(realpath(dirname(__FILE__)) . "/connection.php");
+require(realpath(dirname(__FILE__))."/../lib/tfpdf/tfpdf.php");
 class Vehiculo {
     public $id;
     public $placa;
@@ -43,6 +44,42 @@ class Vehiculo {
     static function delete($id){
         $str = "DELETE FROM vehiculos WHERE id=".$id;
         return Connection::query($str);
+    }
+
+
+    static function pdf() {
+        $pdf = new tFPDF();
+        $pdf->SetFont('Arial','B',15);
+        $pdf->AddPage();
+        $pdf->Text(75, 10, "Listado de vehiculos");
+        $pdf->SetY(20);
+
+
+        $pdf->SetFont('Arial','',10);
+        $pdf->Cell(8, 6, 'Id', 1);
+        $pdf->Cell(15, 6, 'Placa', 1);
+        $pdf->Cell(15, 6, 'Modelo', 1);
+        $pdf->Cell(15, 6, 'Marca', 1);
+        $pdf->Cell(20, 6, 'Capacidad', 1);
+        $pdf->Cell(40, 6, 'Cliente', 1);
+        $pdf->Cell(40, 6, 'Conductor', 1);
+        $pdf->Cell(40, 6, 'Fecha de creacion', 1);
+        $pdf->Ln();
+
+        $vehiculos = Vehiculo::listar();
+        foreach ($vehiculos as $vehiculo) {
+            $pdf->Cell(8, 6, $vehiculo->id, 1, 'LR');
+            $pdf->Cell(15, 6, $vehiculo->placa, 1,'LR');
+            $pdf->Cell(15, 6, $vehiculo->modelo, 1,'LR');
+            $pdf->Cell(15, 6, $vehiculo->marca, 1,'LR');
+            $pdf->Cell(20, 6, $vehiculo->capacidad, 1,'LR');
+            $pdf->Cell(40, 6, $vehiculo->nombres_clientes, 1,'LR');
+            $pdf->Cell(40, 6, $vehiculo->nombres_conductores, 1,'LR');
+            $pdf->Cell(40, 6, $vehiculo->created, 1,'LR');
+            $pdf->Ln();
+        }
+
+        $pdf->Output();
     }
 
     static function listar() {

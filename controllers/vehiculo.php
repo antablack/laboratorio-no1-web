@@ -13,6 +13,11 @@ class VehiculoController
         return Vehiculo::delete($id);
     }
 
+    static function pdf()
+    {
+        return Vehiculo::pdf();
+    }
+
     static function crear($data)
     {
         $vehiculo = new Vehiculo();
