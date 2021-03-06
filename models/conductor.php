@@ -22,7 +22,7 @@ class Conductor {
         $conductorQuery = Connection::query($str);
         $conductorAssoc = $conductorQuery->fetch_assoc();
         if ($conductorAssoc) {
-            $conductor = new conductor();
+            $conductor = new Conductor();
             $conductor->id = $conductorAssoc["id"];
             $conductor->nombres = $conductorAssoc["nombres"];
             $conductor->apellidos = $conductorAssoc["apellidos"];
@@ -49,7 +49,7 @@ class Conductor {
         if ($conductorQuery) {
             $conductorList = array();
             while ($conductorItem = $conductorQuery->fetch_assoc()) {
-                $conductor = new conductor();
+                $conductor = new Conductor();
                 $conductor->id = $conductorItem["id"];
                 $conductor->nombres = $conductorItem["nombres"];
                 $conductor->apellidos = $conductorItem["apellidos"];

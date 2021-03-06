@@ -1,6 +1,7 @@
 <?php 
 require("./models/servicio.php"); 
 require("./models/conductor.php");
+require("./models/vehiculo.php");
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +49,7 @@ require("./models/conductor.php");
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Vehiculos</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo Vehiculo::count(); ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>

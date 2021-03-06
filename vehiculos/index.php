@@ -1,22 +1,25 @@
+<?php require("../controllers/vehiculo.php"); ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-<?php 
-$PAGE_TYPE = 'INDEX';
-$BASE_PATH = './';
-include("./__partials/head.php"); 
-?>
+    <?php
+    $PAGE_TITLE = 'Transportes | Vehiculos';
+    $BASE_PATH = '../';
+    include($BASE_PATH . "/__partials/head.php");
+    ?>
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="sidebar-toggled">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php include($BASE_PATH."__partials/asideNavBar.php") ?>
+        <?php include($BASE_PATH . "__partials/asideNavBar.php") ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -29,62 +32,70 @@ include("./__partials/head.php");
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <h1 class="h3 mb-0 text-gray-800">Vehiculos</h1>
+                        <a href="crear/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Crear</a>
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="row">
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Vehiculos</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Conductores</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Servicios</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <td>Id</td>
+                                            <td>Placa</td>
+                                            <td>Modelo</td>
+                                            <td>Marca</td>
+                                            <td>Capacidad</td>
+                                            <td>Nombres cliente</td>
+                                            <td>Nombres conductor</td>
+                                            <th>Fecha de creción</th>
+                                            <th>Fecha de modificación</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <td>Id</td>
+                                            <td>Placa</td>
+                                            <td>Modelo</td>
+                                            <td>Marca</td>
+                                            <td>Capacidad</td>
+                                            <td>Nombres cliente</td>
+                                            <td>Nombres conductor</td>
+                                            <th>Fecha de creción</th>
+                                            <th>Fecha de modificación</th>
+                                            <th></th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <?php 
+                                            $vehiculos = VehiculoController::getAll();
+                                            foreach ($vehiculos as $vehiculo) {
+                                                echo "<tr>
+                                                    <td>".$vehiculo->id."</td>
+                                                    <td>".$vehiculo->placa."</td>
+                                                    <td>".$vehiculo->modelo."</td>
+                                                    <td>".$vehiculo->marca."</td>
+                                                    <td>".$vehiculo->capacidad."</td>
+                                                    <td>".$vehiculo->nombres_clientes."</td>
+                                                    <td>".$vehiculo->nombres_conductores."</td>
+                                                    <td>".$vehiculo->created."</td>
+                                                    <td>".$vehiculo->modified."</td>
+                                                    <td>
+                                                        <a class='btn btn-primary' href='editar/index.php?id=" . $vehiculo->id . "'>Editar</a>
+                                                        <a class='btn btn-danger' href='eliminar/index.php?id=" . $vehiculo->id . "'>Eliminar</a>
+                                                    </td>
+                                                </tr>";
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -95,16 +106,23 @@ include("./__partials/head.php");
             </div>
             <!-- End of Main Content -->
 
-            <?php include($BASE_PATH."__partials/footer.php") ?>
+            <?php include($BASE_PATH . "__partials/footer.php") ?>
 
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
 
-    <?php 
-    include($BASE_PATH."__partials/dependencies.php"); 
-?>
+    <?php
+    include($BASE_PATH . "__partials/dependencies.php");
+    ?>
+
+    <!-- Page level plugins -->
+    <script src="<?php echo $BASE_PATH ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo $BASE_PATH ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="<?php echo $BASE_PATH ?>assets/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>
